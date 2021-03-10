@@ -18,8 +18,8 @@ require([
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center:[-90, 38],
-        zoom: 4
+        center:[-91.1, 38.6],
+        zoom: 9
       });
 
       /*************************************************************
@@ -33,48 +33,41 @@ require([
        **************************************************************/
 
       var template = { // autocasts as new PopupTemplate()
-        title: "{Player} ({Position})",
+        title: "Neighborhood: {NHD_NAME}",
         content: [{
           // It is also possible to set the fieldInfos outside of the content
           // directly in the popupTemplate. If no fieldInfos is specifically set
           // in the content, it defaults to whatever may be set within the popupTemplate.
           type: "fields",
           fieldInfos: [{
-            fieldName: "Height",
-            label: "Height: ",
+            fieldName: "NHD_NUM",
+            label: "NHD_NUM: ",
             visible: true
           }, {
-            fieldName: "Weight",
-            label: "Weight: ",
+            fieldName: "NHD_NUMTXT",
+            label: "NHD_NUMTXT: ",
             visible: true,
             format: {
               digitSeparator: true,
               places: 0
             }
           }, {
-            fieldName: "Shot",
-            label: "Shoots: ",
+            fieldName: "NHD_NUM_ST",
+            label: "NHD_NUM_ST: ",
             visible: true,
             format: {
               digitSeparator: true,
               places: 0
             }
           }, {
-            fieldName: "Team",
-            label: "Team",
+            fieldName: "ANGLE",
+            label: "ANGLE",
             visible: true,
             format: {
               digitSeparator: true,
               places: 0
             }
-          }, {
-            fieldName: "RankingType",
-            label: "Ranking Type",
-            visible: true,
-            format: {
-              digitSeparator: true,
-              places: 0
-            }
+       
           }
                       ]
         }]
@@ -94,7 +87,7 @@ require([
       // Reference the popupTemplate instance in the
       // popupTemplate property of FeatureLayer
       var featureLayer = new FeatureLayer({
-        url: "https://services2.arcgis.com/bB9Y1bGKerz1PTl5/arcgis/rest/services/NHL_Draft_Prospects_WFL1/FeatureServer",
+        url: "https://services2.arcgis.com/bB9Y1bGKerz1PTl5/ArcGIS/rest/services/STL_Neighborhood/FeatureServer/0",
         outFields: ["*"],
         popupTemplate: template,
         renderer:renderer
